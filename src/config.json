@@ -1,0 +1,17 @@
+{
+  "jse_tickers": [
+    "SBK.JO",
+    "NPN.JO",
+    "FSR.JO",
+    "PRX.JO"
+  ],
+  "us_tickers": [
+    "AAPL",
+    "MSFT"
+  ],
+  "analysis_settings": {
+    "short_window": 50,
+    "long_window": 200,
+    "period": "1y"
+  }
+}
