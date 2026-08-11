@@ -2,6 +2,7 @@ import json
 import os
 import pandas as pd
 import yfinance as yf
+from excel_generator import generate_report
 
 def load_config(config_path="src/config.json"):
     """Reads project settings and ticker lists from config.json."""
@@ -85,6 +86,7 @@ def run_analysis():
     print("\n=== Final Market Summary ===")
     print(summary_df.to_string(index=False))
     return summary_df
+    generate_report(summary_df)
 
 if __name__ == "__main__":
     run_analysis()
