@@ -13,6 +13,9 @@ def generate_report(df):
     
     print(f"\n[+] Generating visual report: {filepath}")
     
+    # ---> THIS IS THE MISSING LINE THAT CREATES THE CSV <---
+    df.to_csv(filepath.replace(".xlsx", ".csv"), index=False)
+    
     # Initialize the Excel writer
     writer = pd.ExcelWriter(filepath, engine='xlsxwriter')
     df.to_excel(writer, sheet_name='Market Summary', index=False)

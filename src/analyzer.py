@@ -2,6 +2,8 @@ import json
 import os
 import pandas as pd
 import yfinance as yf
+
+# ---> THIS IS THE CABLE THAT CONNECTS THE TWO FILES <---
 from excel_generator import generate_report
 
 def load_config(config_path="src/config.json"):
@@ -21,18 +23,17 @@ def analyze_ticker(ticker_symbol, short_w=50, long_w=200, period="1y"):
         print(f"[-] No data found for {ticker_symbol}")
         return None
 
-    # Calculate Moving Averages using core Pandas
+    # Calculate Moving Averages
     df['SMA_50'] = df['Close'].rolling(window=short_w).mean()
     df['SMA_200'] = df['Close'].rolling(window=long_w).mean()
     
-    # Calculate RSI (14-day Relative Strength Index)
+    # Calculate RSI
     delta = df['Close'].diff()
     gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
     loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
     rs = gain / loss
     df['RSI_14'] = 100 - (100 / (1 + rs))
 
-    # Drop incomplete calculation rows
     df = df.dropna()
 
     if df.empty:
@@ -85,8 +86,11 @@ def run_analysis():
     summary_df = pd.DataFrame(results)
     print("\n=== Final Market Summary ===")
     print(summary_df.to_string(index=False))
-    return summary_df
+    
+    # ---> THIS TELLS THE GENERATOR TO ACTUALLY CREATE THE FILES <---
     generate_report(summary_df)
+    
+    return summary_df
 
 if __name__ == "__main__":
     run_analysis()
