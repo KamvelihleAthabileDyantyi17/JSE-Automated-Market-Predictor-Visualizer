@@ -23,12 +23,27 @@ Built to run autonomously in a Linux environment, this system fetches daily clos
 
 ## 📂 Project Structure
 ```text
-├── src/
-│   ├── analyzer.py          # Main Python script for data fetching & logic
-│   ├── excel_generator.py   # Uses xlsxwriter to build the dashboard
-│   └── config.json          # List of JSE and US tickers to track
-├── scripts/
-│   └── run_analyzer.sh      # Master Bash controller script
-├── reports/                 # Output directory for daily .xlsx dashboards
-├── logs/                    # System execution and error logs
-└── requirements.txt         # Python dependencies
+
+
+├── .github/                     # GitHub configuration/workflows
+├── .venv/                       # Your local Python virtual environment
+│   ├── Include/
+│   ├── Lib/
+│   ├── Scripts/
+│   ├── share/
+│   ├── .gitignore
+│   └── pyvenv.cfg
+├── reports/                     # Output directory for daily dashboards
+│   ├── JSE_Market_Report_2026-08-11.csv
+│   └── JSE_Market_Report_2026-08-11.xlsx
+├── src/                         # Main source code directory
+│   ├── __pycache__/             # Compiled Python files
+│   │   └── excel_generator.cpython-314.pyc
+│   ├── analyzer.py              # Main Python script for data fetching & logic
+│   ├── config.json              # List of tickers to track
+│   ├── excel_generator.py       # Builds the dashboard
+│   └── test.py                  # Environment/connection test script
+├── EnviromentSetup.png          # Setup reference image
+├── jse_predictor_logo.png       # Project branding/logo
+├── README.md                    # Project documentation
+└── requirements.txt             # Python dependencies
